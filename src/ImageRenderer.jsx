@@ -9,4 +9,4 @@ const ImageRenderer = (props) => {
   );
 };
 
-export { ImageRenderer };
+export default ImageRenderer;

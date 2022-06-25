@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { VisitedRenderer } from "./VisitedRenderer";
-import { ImageRenderer } from "./ImageRenderer";
-import { VisitedHeader } from "./VisitedHeader";
+import VisitedRenderer from "./VisitedRenderer";
+import ImageRenderer from "./ImageRenderer";
+import VisitedHeader from "./VisitedHeader";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -27,10 +27,7 @@ const App = () => {
       headerName: "Visited",
       headerComponent: VisitedHeader,
       headerComponentParams: {
-        filterEnabled,
-        setFilterEnabled: (v) => {
-          setFilterEnabled(v);
-        },
+        setFilterEnabled,
       },
       field: "visited",
       cellRenderer: VisitedRenderer,
@@ -85,7 +82,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (gridRef.current.api) {
+    if (gridRef.current && gridRef.current.api) {
       gridRef.current.api.onFilterChanged();
     }
   }, [filterEnabled]);
@@ -101,9 +98,7 @@ const App = () => {
             rowData={rowData}
             rowHeight={200}
             doesExternalFilterPass={doesExternalFilterPass}
-            isExternalFilterPresent={() => {
-              return filterEnabled;
-            }}
+            isExternalFilterPresent={() => filterEnabled}
           ></AgGridReact>
         </div>
       </Stack>
@@ -111,4 +106,4 @@ const App = () => {
   );
 };
 
-export { App };
+export default App;

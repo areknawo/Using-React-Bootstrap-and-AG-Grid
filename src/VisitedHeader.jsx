@@ -10,7 +10,7 @@ const VisitedHeader = (props) => {
 
   return (
     <ToggleButton
-      id="toggle-check"
+      id="filter-visited"
       type="checkbox"
       variant={checked ? "outline-primary" : "outline-secondary"}
       checked={checked}
@@ -24,4 +24,4 @@ const VisitedHeader = (props) => {
   );
 };
 
-export { VisitedHeader };
+export default VisitedHeader;
